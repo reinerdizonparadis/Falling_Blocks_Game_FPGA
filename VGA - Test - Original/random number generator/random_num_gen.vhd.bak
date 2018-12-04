@@ -1,0 +1,32 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity random_num_gen is
+	generic (
+		data_width : integer := 32
+		);
+	port(
+		seed : in STD_LOGIC_VECTOR(data_width-1 downto 0);
+		clk, clrn, ld_sh : in STD_LOGIC;
+		rand_num : inout STD_LOGIC_VECTOR(data_width-1 downto 0)
+		);
+end random_num_gen;
+
+architecture structural of random_num_gen is
+component sh_reg is
+	generic (
+		data_width : integer := 32
+	);
+	port(
+		d : in STD_LOGIC_VECTOR(data_width-1 downto 0);		-- parallel load input
+		ser : in STD_LOGIC;									-- serial input
+		ld_sh, clk, clrn, setn : in STD_LOGIC;				-- control signals
+		q : inout STD_LOGIC_VECTOR(data_width-1 downto 0)	-- parallel output
+		);
+end component sh_reg;
+
+	signal xor_out : STD_LOGIC;
+begin
+	xor_out <= rand_num(31) xor rand_num(21) xor rand_num(1) xor rand_num(0);	-- random number generation
+	sh_u1 : sh_reg port map(d => seed, ser => xor_out, ld_sh => ld_sh, clk => clk, clrn => clrn, setn => '1', q => rand_num);
+end structural;

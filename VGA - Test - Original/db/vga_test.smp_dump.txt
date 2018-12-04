@@ -1,0 +1,28 @@
+
+State Machine - |vga_test|PIXEL_GEN:image_gen|yellow_state
+Name yellow_state.END_TIMER yellow_state.RUN yellow_state.START_TIMER yellow_state.INIT 
+yellow_state.INIT 0 0 0 0 
+yellow_state.START_TIMER 0 0 1 1 
+yellow_state.RUN 0 1 0 1 
+yellow_state.END_TIMER 1 0 0 1 
+
+State Machine - |vga_test|PIXEL_GEN:image_gen|green_state
+Name green_state.END_TIMER green_state.RUN green_state.START_TIMER green_state.INIT 
+green_state.INIT 0 0 0 0 
+green_state.START_TIMER 0 0 1 1 
+green_state.RUN 0 1 0 1 
+green_state.END_TIMER 1 0 0 1 
+
+State Machine - |vga_test|PIXEL_GEN:image_gen|blue_state
+Name blue_state.END_TIMER blue_state.RUN blue_state.START_TIMER blue_state.INIT 
+blue_state.INIT 0 0 0 0 
+blue_state.START_TIMER 0 0 1 1 
+blue_state.RUN 0 1 0 1 
+blue_state.END_TIMER 1 0 0 1 
+
+State Machine - |vga_test|PIXEL_GEN:image_gen|red_state
+Name red_state.END_TIMER red_state.RUN red_state.START_TIMER red_state.INIT 
+red_state.INIT 0 0 0 0 
+red_state.START_TIMER 0 0 1 1 
+red_state.RUN 0 1 0 1 
+red_state.END_TIMER 1 0 0 1 

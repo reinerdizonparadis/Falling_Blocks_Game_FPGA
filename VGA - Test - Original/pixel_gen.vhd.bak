@@ -1,0 +1,178 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY PIXEL_GEN IS
+	PORT(
+		disp_ena		:	IN		STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
+		row			:	IN		INTEGER;		--row pixel coordinate
+		column		:	IN		INTEGER;		--column pixel coordinate
+		SW				:	IN		STD_LOGIC_VECTOR(17 DOWNTO 0);
+		KEY			:	IN		STD_LOGIC_VECTOR(3 DOWNTO 0);
+		CLOCK_27		:	IN		STD_LOGIC;
+		moving_clk	:	IN		STD_LOGIC;
+		red			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --red magnitude output to DAC
+		green			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --green magnitude output to DAC
+		blue			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0')); --blue magnitude output to DAC
+END PIXEL_GEN;
+
+ARCHITECTURE behavior OF PIXEL_GEN IS
+
+COMPONENT random_num_gen IS
+	GENERIC(data_width : INTEGER := 32);
+	PORT(
+		seed : IN STD_LOGIC_VECTOR(data_width-1 DOWNTO 0);
+		clk, clrn, ld_sh : IN STD_LOGIC;
+		rand_num : INOUT STD_LOGIC_VECTOR(data_width-1 DOWNTO 0));
+END COMPONENT random_num_gen;
+
+SIGNAL red_y1: NATURAL RANGE 0 TO 1024:=0;
+SIGNAL red_en:	BOOLEAN := FALSE;
+
+SIGNAL green_y1: NATURAL RANGE 0 TO 1024:=0;
+SIGNAL green_en: BOOLEAN := FALSE;
+
+SIGNAL blue_y1: NATURAL RANGE 0 TO 1024:=0;
+SIGNAL rand_num1, rand_num2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+
+BEGIN
+	
+	rand_u1: random_num_gen port map(
+		seed => (OTHERS => '1'),
+		clk => CLOCK_27,
+		ld_sh =>  SW(16),
+		clrn => '1',
+		rand_num => rand_num1
+	);
+	
+	rand_u2: random_num_gen port map(
+		seed => (OTHERS => '1'),
+		clk => NOT CLOCK_27,
+		ld_sh => SW(16),
+		clrn => '1',
+		rand_num => rand_num2
+	);
+	
+	PROCESS(disp_ena, row, column, moving_clk)
+	
+	VARIABLE static_r, static_g, static_b :	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
+	VARIABLE moving_r, moving_g, moving_b :	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '1');
+	
+	BEGIN
+
+		IF(disp_ena = '1') THEN		--display time	
+			
+			IF		row >= 924 AND row < 1024 AND column >= 135 AND column < 135+200	THEN		-- left: red block
+				IF KEY(3) = '0' THEN
+					static_r := (OTHERS => '1');
+					static_g	:= (OTHERS => '0');
+					static_b := (OTHERS => '0');
+				ELSE
+					static_r := "11100100";
+					static_g	:= "00110111";
+					static_b := "00010010";
+				END IF;
+			
+			ELSIF	row >= 924 AND row < 1024 AND column >= 405 AND column < 405+200	THEN		-- middle left: green block
+				IF KEY(2) = '0' THEN
+					static_r := (OTHERS => '0');
+					static_g	:= (OTHERS => '1');
+					static_b := (OTHERS => '0');
+				ELSE
+					static_r := "00010011";
+					static_g	:= "10100101";
+					static_b := "00101110";
+				END IF;
+			
+			ELSIF	row >= 924 AND row < 1024 AND column >= 675 AND column < 675+200	THEN		-- middle right: blue block
+				IF KEY(1) = '0' THEN
+					static_r := (OTHERS => '0');
+					static_g	:= (OTHERS => '0');
+					static_b := (OTHERS => '1');
+				ELSE
+					static_r := "00101011";
+					static_g	:= "00010010";
+					static_b := "10100101";
+				END IF;
+			
+			ELSIF	row >= 924 AND row < 1024 AND column >= 945 AND column < 945+200	THEN		-- right: yellow block
+				IF KEY(0) = '0' THEN
+					static_r := (OTHERS => '1');
+					static_g	:= (OTHERS => '1');
+					static_b := (OTHERS => '0');
+				ELSE
+					static_r := "10101011";
+					static_g	:= "10010010";
+					static_b := "00100101";
+				END IF;
+			
+			ELSE
+				static_r := (OTHERS => '1');
+				static_g	:= (OTHERS => '1');
+				static_b := (OTHERS => '1');
+			END IF;
+			
+			
+			----------- MOVEMENT
+			IF(moving_clk'event AND moving_clk = '1') THEN
+				red_y1 <= red_y1 + 10;
+				green_y1 <= green_y1 + 5;
+				
+				IF		rand_num1(1 DOWNTO 0) = "00"	THEN
+					red_en <= TRUE;
+				ELSIF	rand_num1(1 DOWNTO 0) = "01"	THEN
+					green_en <= TRUE;
+				ELSIF	rand_num1(1 DOWNTO 0) = "10"	THEN
+					
+				ELSIF	rand_num1(1 DOWNTO 0) = "11"	THEN
+					
+				END IF;
+				
+			END IF;
+			
+			-- MOVING BLOCKS DRAWING
+			IF		red_en AND row >= red_y1 AND row < red_y1+50 AND column >= 135 AND column < 135+200			THEN
+				moving_r := "11100100";
+				moving_g	:= "00110111";
+				moving_b := "00010010";
+				
+			ELSIF	green_en AND row >= green_y1 AND row < green_y1+50 AND column >= 405 AND column < 405+200	THEN
+				moving_r := "00010011";
+				moving_g	:= "10100101";
+				moving_b := "00101110";
+				
+			ELSE
+				moving_r := (OTHERS => '1');
+				moving_g := (OTHERS => '1');
+				moving_b := (OTHERS => '1');
+			END IF;
+			
+			-- DISABLING DRAWING
+			IF	red_en AND red_y1 = 1023 THEN
+				red_en <= FALSE;
+				red_y1 <= 0;
+			END IF;
+			
+			IF	green_en AND green_y1 = 1023 THEN
+				red_en <= FALSE;
+				green_y1 <= 0;
+			END IF;
+		
+		ELSE								--blanking time
+			static_r := (OTHERS => '0');
+			static_g := (OTHERS => '0');
+			static_b := (OTHERS => '0');
+			
+			moving_r := (OTHERS => '0');
+			moving_g := (OTHERS => '0');
+			moving_b := (OTHERS => '0');
+		END IF;
+		
+		
+		-- display to the screen
+		red <= static_r AND moving_r;
+		green <= static_g AND moving_g;
+		blue <= static_b AND moving_b;
+		
+	
+	END PROCESS;
+END behavior;
