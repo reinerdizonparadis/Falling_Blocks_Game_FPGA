@@ -1,0 +1,16 @@
+<sld_project_info>
+  <project>
+    <hash md5_digest_80b="11d6ed93f83834bbdc86"/>
+  </project>
+  <file_info>
+    <file device="EP2C35F672C6" path="falling_blocks.sof" usercode="0xFFFFFFFF"/>
+  </file_info>
+  <sld_infos>
+    <sld_info hpath="vga_pll:pll_clk" name="pll_clk">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME vga_pll HAS_SOPCINFO 1 GENERATION_ID 1543965100"/>
+      </assignment_values>
+      <parameters/>
+    </sld_info>
+  </sld_infos>
+</sld_project_info>

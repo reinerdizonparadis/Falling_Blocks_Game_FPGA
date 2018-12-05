@@ -39,13 +39,16 @@ ARCHITECTURE behavior OF graphic_generator IS
 			rand_num : INOUT STD_LOGIC_VECTOR(data_width-1 DOWNTO 0));
 	END COMPONENT random_num_gen;
 	
+	-- TYPE
+	TYPE KEY_STATE IS (INIT, START_TIMER, RUN, END_TIMER);
+	
 	-- SIGNALS
 	SIGNAL red_y, green_y, blue_y, yellow_y: NATURAL := 0;
 	SIGNAL red_en, green_en, blue_en, yellow_en: BOOLEAN := FALSE;
 	SIGNAL red_click, green_click, blue_click, yellow_click: BOOLEAN := FALSE;
 	SIGNAL red_lock, green_lock, blue_lock, yellow_lock : STD_LOGIC := '1';
 	SIGNAL rand_num : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-	SIGNAL red_dbcnt, blue_dbcnt, green_dbcnt, yellow_dbcnt : NATURAL RANGE 0 to DEBOUNCING_CNT-1 := 0;
+	SIGNAL red_dbcnt, blue_dbcnt, green_dbcnt, yellow_dbcnt : NATURAL RANGE 0 to 124999 := 0;
 	SIGNAL red_state, blue_state, green_state, yellow_state : KEY_STATE := INIT;
 	
 BEGIN
@@ -62,10 +65,72 @@ BEGIN
 	-- Update Debouncing Counters
 	PROCESS(CLOCK_50) BEGIN
 		IF CLOCK_50'EVENT AND CLOCK_50 = '1' THEN
-			CHECK_BTN(red_state, red_click, red_dbcnt, red_lock);
-			CHECK_BTN(blue_state, blue_click, blue_dbcnt, blue_lock);
-			CHECK_BTN(green_state, green_click, green_dbcnt, green_lock);
-			CHECK_BTN(yellow_state, yellow_click, yellow_dbcnt, yellow_lock);
+			CASE red_state IS
+				WHEN INIT =>
+					IF red_click THEN red_state <= RUN; END IF;
+					red_dbcnt <= 0;
+					red_lock <= '0';
+				WHEN RUN =>
+					red_lock <= '1';
+					red_dbcnt <= red_dbcnt + 1;
+					IF red_dbcnt + 1 = 124999 THEN red_state <= END_TIMER; END IF;
+				WHEN END_TIMER =>
+					red_dbcnt <= 0;
+					red_lock <= '0';
+					IF NOT red_click THEN red_state <= INIT; END IF;
+				WHEN OTHERS =>
+					red_state <= INIT;
+			END CASE;
+			CASE blue_state IS
+				WHEN INIT =>
+					IF blue_click THEN blue_state <= RUN; END IF;
+					blue_dbcnt <= 0;
+					blue_lock <= '0';
+				WHEN RUN =>
+					blue_lock <= '1';
+					blue_dbcnt <= blue_dbcnt + 1;
+					IF blue_dbcnt + 1 = 124999 THEN blue_state <= END_TIMER; END IF;
+				WHEN END_TIMER =>
+					blue_dbcnt <= 0;
+					blue_lock <= '0';
+					IF NOT blue_click THEN blue_state <= INIT; END IF;
+				WHEN OTHERS =>
+					blue_state <= INIT;
+			END CASE;
+			
+			CASE green_state IS
+				WHEN INIT =>
+					IF green_click THEN green_state <= RUN; END IF;
+					green_dbcnt <= 0;
+					green_lock <= '0';
+				WHEN RUN =>
+					green_lock <= '1';
+					green_dbcnt <= green_dbcnt + 1;
+					IF green_dbcnt + 1 = 124999 THEN green_state <= END_TIMER; END IF;
+				WHEN END_TIMER =>
+					green_dbcnt <= 0;
+					green_lock <= '0';
+					IF NOT green_click THEN green_state <= INIT; END IF;
+				WHEN OTHERS =>
+					green_state <= INIT;
+			END CASE;
+			
+			CASE yellow_state IS
+				WHEN INIT =>
+					IF yellow_click THEN yellow_state <= RUN; END IF;
+					yellow_dbcnt <= 0;
+					yellow_lock <= '0';
+				WHEN RUN =>
+					yellow_lock <= '1';
+					yellow_dbcnt <= yellow_dbcnt + 1;
+					IF yellow_dbcnt + 1 = 124999 THEN yellow_state <= END_TIMER; END IF;
+				WHEN END_TIMER =>
+					yellow_dbcnt <= 0;
+					yellow_lock <= '0';
+					IF NOT yellow_click THEN yellow_state <= INIT; END IF;
+				WHEN OTHERS =>
+					yellow_state <= INIT;
+			END CASE;
 		END IF;
 	END PROCESS;
 	
@@ -96,6 +161,8 @@ BEGIN
 											(OTHERS => '1'), (OTHERS => '0'), (OTHERS => '0'),
 											static_r, static_g, static_b,
 											red_click, score_temp);
+				
+				
 			ELSIF	row >= STAT_BLK_MIN AND row < STAT_BLK_MAX AND column >= 405 AND column < 405+STAT_BLK_SIZE	THEN		-- middle left: green block
 				CREATE_STATIC_BLOCKS(KEY(2), SW(0),
 											green_en AND NOT green_click AND green_y+STAT_MOV_SIZE >= STAT_BLK_MIN AND green_y+STAT_MOV_SIZE < STAT_BLK_MAX,
@@ -104,27 +171,51 @@ BEGIN
 											(OTHERS => '0'), (OTHERS => '1'), (OTHERS => '0'),
 											static_r, static_g, static_b,
 											green_click, score_temp);
+				
 			ELSIF	row >= STAT_BLK_MIN AND row < STAT_BLK_MAX AND column >= 675 AND column < 675+STAT_BLK_SIZE	THEN		-- middle right: blue block
-				CREATE_STATIC_BLOCKS(KEY(1), SW(0),
-											blue_en AND NOT blue_click AND blue_y+STAT_MOV_SIZE >= STAT_BLK_MIN AND blue_y+STAT_MOV_SIZE < STAT_BLK_MAX,
-											blue_lock = '0' AND KEY(1) = '1' AND blue_click,
-											"00101011", "00010010", "10100101",
-											(OTHERS => '0'), (OTHERS => '0'), (OTHERS => '1'),
-											static_r, static_g, static_b,
-											blue_click, score_temp);
+				IF KEY(1) = '0' AND SW(0) = '0' THEN
+					static_r := (OTHERS => '0');
+					static_g	:= (OTHERS => '0');
+					static_b := (OTHERS => '1');
+					
+					IF(blue_en AND NOT blue_click AND blue_y+STAT_MOV_SIZE >= STAT_BLK_MIN AND blue_y+STAT_MOV_SIZE < STAT_BLK_MAX) THEN
+						blue_click <= TRUE;
+					END IF;
+				ELSE
+					static_r := "00101011";
+					static_g	:= "00010010";
+					static_b := "10100101";
+					IF blue_lock = '0' AND KEY(1) = '1' AND blue_click THEN
+						score_temp := score_temp + 1;
+						blue_click <= FALSE;
+					END IF;
+				END IF;
+				
 			ELSIF	row >= STAT_BLK_MIN AND row < STAT_BLK_MAX AND column >= 945 AND column < 945+STAT_BLK_SIZE	THEN		-- right: yellow block
-				CREATE_STATIC_BLOCKS(KEY(0), SW(0),
-											yellow_en AND NOT yellow_click AND yellow_y+STAT_MOV_SIZE >= STAT_BLK_MIN AND yellow_y+STAT_MOV_SIZE < STAT_BLK_MAX,
-											yellow_lock = '0' AND KEY(0) = '1' AND yellow_click,
-											"10101011", "10010010", "00100101",
-											(OTHERS => '1'), (OTHERS => '1'), (OTHERS => '0'),
-											static_r, static_g, static_b,
-											yellow_click, score_temp);
+				IF KEY(0) = '0' AND SW(0) = '0' THEN
+					static_r := (OTHERS => '1');
+					static_g	:= (OTHERS => '1');
+					static_b := (OTHERS => '0');
+					
+					IF(yellow_en AND NOT yellow_click AND yellow_y+STAT_MOV_SIZE >= STAT_BLK_MIN AND yellow_y+STAT_MOV_SIZE < STAT_BLK_MAX) THEN
+						yellow_click <= TRUE;
+					END IF;
+				ELSE
+					static_r := "10101011";
+					static_g	:= "10010010";
+					static_b := "00100101";
+					IF yellow_lock = '0' AND KEY(0) = '1' AND yellow_click THEN
+						score_temp := score_temp + 1;
+						yellow_click <= FALSE;
+					END IF;
+				END IF;
+				
 			ELSE																																			-- background
 				static_r := (OTHERS => '1');
 				static_g	:= (OTHERS => '1');
 				static_b := (OTHERS => '1');
 			END IF;
+			
 			
 			----------- MOVING PIXEL GENERATION
 			IF(moving_clk'event AND moving_clk = '1' AND SW(0) = '0') THEN
@@ -137,10 +228,37 @@ BEGIN
 					speed_lock := FALSE;
 				END IF;
 				
-				ADJUST_MOVING_BLOCKS(red_en, red_y, stat_mov_spd);
-				ADJUST_MOVING_BLOCKS(green_en, green_y, stat_mov_spd);
-				ADJUST_MOVING_BLOCKS(blue_en, blue_y, stat_mov_spd);
-				ADJUST_MOVING_BLOCKS(yellow_en, yellow_y, stat_mov_spd);
+				IF(red_en) THEN
+					red_y <= red_y + stat_mov_spd;
+					IF(red_y + stat_mov_spd > STAT_BLK_MIN-1) THEN
+						red_en <= FALSE;
+						red_y <= 0;
+					END IF;
+				END IF;
+				
+				IF(green_en) THEN
+					green_y <= green_y + stat_mov_spd;
+					IF(green_y + stat_mov_spd > STAT_BLK_MIN-1) THEN
+						green_en <= FALSE;
+						green_y <= 0;
+					END IF;
+				END IF;
+				
+				IF(blue_en) THEN
+					blue_y <= blue_y + stat_mov_spd;
+					IF(blue_y + stat_mov_spd > STAT_BLK_MIN-1) THEN
+						blue_en <= FALSE;
+						blue_y <= 0;
+					END IF;
+				END IF;
+				
+				IF(yellow_en) THEN
+					yellow_y <= yellow_y + stat_mov_spd;
+					IF(yellow_y + stat_mov_spd > STAT_BLK_MIN-1) THEN
+						yellow_en <= FALSE;
+						yellow_y <= 0;
+					END IF;
+				END IF;
 				
 				-- Select blocks based on random number generator
 				IF		rand_num(31 DOWNTO 30) = "00" AND NOT red_en AND red_y = 0 THEN
@@ -154,6 +272,9 @@ BEGIN
 				END IF;
 				
 			END IF;
+			
+			
+			
 			
 			----------- MOVING BLOCKS DRAWING
 			IF		red_en AND row >= red_y AND row < red_y+STAT_MOV_SIZE AND column >= 135 AND column < 135+STAT_BLK_SIZE THEN
