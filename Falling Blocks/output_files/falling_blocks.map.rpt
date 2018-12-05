@@ -1,5 +1,5 @@
 Analysis & Synthesis report for falling_blocks
-Tue Dec 04 17:07:30 2018
+Tue Dec 04 20:27:57 2018
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -34,11 +34,12 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
  26. Port Connectivity Checks: "bcd_7seg:BCD_U1"
  27. Port Connectivity Checks: "bcd_7seg:BCD_U2"
  28. Port Connectivity Checks: "bcd_7seg:BCD_U3"
- 29. Port Connectivity Checks: "graphic_generator:image_gen|random_num_gen:rand_u1"
- 30. Port Connectivity Checks: "graphic_generator:image_gen"
- 31. Port Connectivity Checks: "vga_pll:pll_clk|vga_pll_altpll_0:altpll_0"
- 32. Elapsed Time Per Partition
- 33. Analysis & Synthesis Messages
+ 29. Port Connectivity Checks: "clock_gen:clk_gen"
+ 30. Port Connectivity Checks: "graphic_generator:image_gen|random_num_gen:rand_u1"
+ 31. Port Connectivity Checks: "graphic_generator:image_gen"
+ 32. Port Connectivity Checks: "vga_pll:pll_clk|vga_pll_altpll_0:altpll_0"
+ 33. Elapsed Time Per Partition
+ 34. Analysis & Synthesis Messages
 
 
 
@@ -64,7 +65,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Dec 04 17:07:30 2018      ;
+; Analysis & Synthesis Status        ; Successful - Tue Dec 04 20:27:57 2018      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; falling_blocks                             ;
 ; Top-level Entity Name              ; falling_blocks                             ;
@@ -194,6 +195,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; vga_controller.vhd                              ; yes             ; Auto-Found VHDL File   ; C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/vga_controller.vhd                              ;         ;
 ; graphic_generator.vhd                           ; yes             ; Auto-Found VHDL File   ; C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/graphic_generator.vhd                           ;         ;
 ; random_num_gen.vhd                              ; yes             ; Auto-Found VHDL File   ; C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/random_num_gen.vhd                              ;         ;
+; clock_gen.vhd                                   ; yes             ; Auto-Found VHDL File   ; C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/clock_gen.vhd                                   ;         ;
 ; bcd_7seg.vhd                                    ; yes             ; Auto-Found VHDL File   ; C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/bcd_7seg.vhd                                    ;         ;
 +-------------------------------------------------+-----------------+------------------------+-------------------------------------------------------------------------------------------------------------------+---------+
 
@@ -207,9 +209,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;        ;
 ; Total combinational functions               ; 995    ;
 ; Logic element usage by number of LUT inputs ;        ;
-;     -- 4 input functions                    ; 343    ;
+;     -- 4 input functions                    ; 342    ;
 ;     -- 3 input functions                    ; 201    ;
-;     -- <=2 input functions                  ; 451    ;
+;     -- <=2 input functions                  ; 452    ;
 ;                                             ;        ;
 ; Logic elements by mode                      ;        ;
 ;     -- normal mode                          ; 574    ;
@@ -226,7 +228,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;        ;
 ; Maximum fan-out node                        ; SW[17] ;
 ; Maximum fan-out                             ; 170    ;
-; Total fan-out                               ; 3686   ;
+; Total fan-out                               ; 3688   ;
 ; Average fan-out                             ; 2.70   ;
 +---------------------------------------------+--------+
 
@@ -236,11 +238,12 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node        ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                  ; Library Name ;
 +-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
-; |falling_blocks                   ; 995 (59)          ; 264 (26)     ; 0           ; 0            ; 0       ; 0         ; 106  ; 0            ; |falling_blocks                                                      ;              ;
+; |falling_blocks                   ; 995 (0)           ; 264 (0)      ; 0           ; 0            ; 0       ; 0         ; 106  ; 0            ; |falling_blocks                                                      ;              ;
 ;    |bcd_7seg:BCD_U0|              ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|bcd_7seg:BCD_U0                                      ;              ;
 ;    |bcd_7seg:BCD_U1|              ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|bcd_7seg:BCD_U1                                      ;              ;
 ;    |bcd_7seg:BCD_U2|              ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|bcd_7seg:BCD_U2                                      ;              ;
 ;    |bcd_7seg:BCD_U3|              ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|bcd_7seg:BCD_U3                                      ;              ;
+;    |clock_gen:clk_gen|            ; 59 (59)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|clock_gen:clk_gen                                    ;              ;
 ;    |graphic_generator:image_gen|  ; 845 (844)         ; 192 (160)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|graphic_generator:image_gen                          ;              ;
 ;       |random_num_gen:rand_u1|    ; 1 (1)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|graphic_generator:image_gen|random_num_gen:rand_u1   ;              ;
 ;    |vga_controller:vga_ctrl|      ; 63 (63)           ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |falling_blocks|vga_controller:vga_ctrl                              ;              ;
@@ -406,49 +409,49 @@ Encoding Type:  One-Hot
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+-----------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                            ;
-+------------------------------------------------------+----------------------------------------+
-; Register name                                        ; Reason for Removal                     ;
-+------------------------------------------------------+----------------------------------------+
-; vga_controller:vga_ctrl|column[11..30]               ; Stuck at GND due to stuck port data_in ;
-; vga_controller:vga_ctrl|row[11..30]                  ; Stuck at GND due to stuck port data_in ;
-; vga_pll:pll_clk|vga_pll_altpll_0:altpll_0|prev_reset ; Stuck at GND due to stuck port data_in ;
-; rand_cnt[0]                                          ; Merged with clk_counter[0]             ;
-; rand_cnt[1]                                          ; Merged with clk_counter[1]             ;
-; vga_controller:vga_ctrl|row[10]                      ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|red_y[28..30]            ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|yellow_y[28..30]         ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|blue_y[28..30]           ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|green_y[28..30]          ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|yellow_state.START_TIMER ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|green_state.START_TIMER  ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|blue_state.START_TIMER   ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|red_state.START_TIMER    ; Stuck at GND due to stuck port data_in ;
-; rand_cnt[2]                                          ; Merged with clk_counter[2]             ;
-; rand_cnt[3]                                          ; Merged with clk_counter[3]             ;
-; rand_cnt[4]                                          ; Merged with clk_counter[4]             ;
-; rand_cnt[5]                                          ; Merged with clk_counter[5]             ;
-; rand_cnt[6]                                          ; Merged with clk_counter[6]             ;
-; rand_cnt[7]                                          ; Merged with clk_counter[7]             ;
-; rand_cnt[8]                                          ; Merged with clk_counter[8]             ;
-; rand_cnt[9]                                          ; Merged with clk_counter[9]             ;
-; rand_cnt[10]                                         ; Merged with clk_counter[10]            ;
-; rand_cnt[11]                                         ; Merged with clk_counter[11]            ;
-; rand_cnt[12]                                         ; Merged with clk_counter[12]            ;
-; rand_cnt[13]                                         ; Merged with clk_counter[13]            ;
-; rand_cnt[14]                                         ; Merged with clk_counter[14]            ;
-; rand_cnt[15]                                         ; Merged with clk_counter[15]            ;
-; rand_cnt[16]                                         ; Merged with clk_counter[16]            ;
-; rand_cnt[17]                                         ; Merged with clk_counter[17]            ;
-; graphic_generator:image_gen|red_y[10..27]            ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|yellow_y[10..27]         ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|green_y[10..27]          ; Stuck at GND due to stuck port data_in ;
-; graphic_generator:image_gen|blue_y[10..27]           ; Stuck at GND due to stuck port data_in ;
-; vga_controller:vga_ctrl|row[31]                      ; Stuck at GND due to stuck port data_in ;
-; vga_controller:vga_ctrl|column[31]                   ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 150              ;                                        ;
-+------------------------------------------------------+----------------------------------------+
++------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                   ;
++------------------------------------------------------+-----------------------------------------------+
+; Register name                                        ; Reason for Removal                            ;
++------------------------------------------------------+-----------------------------------------------+
+; vga_controller:vga_ctrl|column[11..30]               ; Stuck at GND due to stuck port data_in        ;
+; vga_controller:vga_ctrl|row[11..30]                  ; Stuck at GND due to stuck port data_in        ;
+; vga_pll:pll_clk|vga_pll_altpll_0:altpll_0|prev_reset ; Stuck at GND due to stuck port data_in        ;
+; clock_gen:clk_gen|rand_cnt[0]                        ; Merged with clock_gen:clk_gen|clk_counter[0]  ;
+; clock_gen:clk_gen|rand_cnt[1]                        ; Merged with clock_gen:clk_gen|clk_counter[1]  ;
+; vga_controller:vga_ctrl|row[10]                      ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|red_y[28..30]            ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|yellow_y[28..30]         ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|blue_y[28..30]           ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|green_y[28..30]          ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|yellow_state.START_TIMER ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|green_state.START_TIMER  ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|blue_state.START_TIMER   ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|red_state.START_TIMER    ; Stuck at GND due to stuck port data_in        ;
+; clock_gen:clk_gen|rand_cnt[2]                        ; Merged with clock_gen:clk_gen|clk_counter[2]  ;
+; clock_gen:clk_gen|rand_cnt[3]                        ; Merged with clock_gen:clk_gen|clk_counter[3]  ;
+; clock_gen:clk_gen|rand_cnt[4]                        ; Merged with clock_gen:clk_gen|clk_counter[4]  ;
+; clock_gen:clk_gen|rand_cnt[5]                        ; Merged with clock_gen:clk_gen|clk_counter[5]  ;
+; clock_gen:clk_gen|rand_cnt[6]                        ; Merged with clock_gen:clk_gen|clk_counter[6]  ;
+; clock_gen:clk_gen|rand_cnt[7]                        ; Merged with clock_gen:clk_gen|clk_counter[7]  ;
+; clock_gen:clk_gen|rand_cnt[8]                        ; Merged with clock_gen:clk_gen|clk_counter[8]  ;
+; clock_gen:clk_gen|rand_cnt[9]                        ; Merged with clock_gen:clk_gen|clk_counter[9]  ;
+; clock_gen:clk_gen|rand_cnt[10]                       ; Merged with clock_gen:clk_gen|clk_counter[10] ;
+; clock_gen:clk_gen|rand_cnt[11]                       ; Merged with clock_gen:clk_gen|clk_counter[11] ;
+; clock_gen:clk_gen|rand_cnt[12]                       ; Merged with clock_gen:clk_gen|clk_counter[12] ;
+; clock_gen:clk_gen|rand_cnt[13]                       ; Merged with clock_gen:clk_gen|clk_counter[13] ;
+; clock_gen:clk_gen|rand_cnt[14]                       ; Merged with clock_gen:clk_gen|clk_counter[14] ;
+; clock_gen:clk_gen|rand_cnt[15]                       ; Merged with clock_gen:clk_gen|clk_counter[15] ;
+; clock_gen:clk_gen|rand_cnt[16]                       ; Merged with clock_gen:clk_gen|clk_counter[16] ;
+; clock_gen:clk_gen|rand_cnt[17]                       ; Merged with clock_gen:clk_gen|clk_counter[17] ;
+; graphic_generator:image_gen|red_y[10..27]            ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|yellow_y[10..27]         ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|green_y[10..27]          ; Stuck at GND due to stuck port data_in        ;
+; graphic_generator:image_gen|blue_y[10..27]           ; Stuck at GND due to stuck port data_in        ;
+; vga_controller:vga_ctrl|row[31]                      ; Stuck at GND due to stuck port data_in        ;
+; vga_controller:vga_ctrl|column[31]                   ; Stuck at GND due to stuck port data_in        ;
+; Total Number of Removed Registers = 150              ;                                               ;
++------------------------------------------------------+-----------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -504,7 +507,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Total registers                              ; 264   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Synchronous Load   ; 2     ;
 ; Number of registers using Asynchronous Clear ; 133   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 105   ;
@@ -565,18 +568,18 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_b   ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_r   ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_b   ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_b   ;
 ; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|moving_b   ;
 ; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |falling_blocks|vga_controller:vga_ctrl|v_count        ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_r   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_b   ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_g   ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|moving_r   ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector67 ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector44 ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector25 ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector2  ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|static_r   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|moving_g   ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector66 ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector45 ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector24 ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; No         ; |falling_blocks|graphic_generator:image_gen|Selector0  ;
 ; 13:1               ; 28 bits   ; 224 LEs       ; 28 LEs               ; 196 LEs                ; No         ; |falling_blocks|graphic_generator:image_gen|score_temp ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
 
@@ -1059,6 +1062,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+-------+----------+-----------------+
 
 
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "clock_gen:clk_gen"                                                                         ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                             ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+; debounce_clk ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "graphic_generator:image_gen|random_num_gen:rand_u1"                                           ;
 +-----------------+-------+----------+-------------------------------------------------------------------------------------+
@@ -1105,7 +1117,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Dec 04 17:07:27 2018
+    Info: Processing started: Tue Dec 04 20:27:53 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off falling_blocks -c falling_blocks
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 0 entities, in source file graphics_lib.vhd
@@ -1119,7 +1131,7 @@ Info (12021): Found 3 design units, including 3 entities, in source file vga_pll
     Info (12023): Found entity 2: vga_pll_altpll_0_stdsync_sv6
     Info (12023): Found entity 3: vga_pll_altpll_0
 Warning (12125): Using design file falling_blocks.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
-    Info (12022): Found design unit 1: falling_blocks-behavior
+    Info (12022): Found design unit 1: falling_blocks-structural
     Info (12023): Found entity 1: falling_blocks
 Info (12127): Elaborating entity "falling_blocks" for the top level hierarchy
 Info (12128): Elaborating entity "vga_pll" for hierarchy "vga_pll:pll_clk"
@@ -1161,48 +1173,48 @@ Warning (12125): Using design file graphic_generator.vhd, which is not specified
     Info (12022): Found design unit 1: graphic_generator-behavior
     Info (12023): Found entity 1: graphic_generator
 Info (12128): Elaborating entity "graphic_generator" for hierarchy "graphic_generator:image_gen"
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(84): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(92): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(92): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(93): signal "red_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(93): signal "red_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(93): signal "red_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(94): signal "red_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(94): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(94): signal "red_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(100): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(100): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(101): signal "green_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(101): signal "green_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(101): signal "green_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(102): signal "green_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(102): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(102): signal "green_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(108): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(108): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(109): signal "blue_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(109): signal "blue_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(109): signal "blue_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(110): signal "blue_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(110): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(110): signal "blue_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(116): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(116): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(117): signal "yellow_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(117): signal "yellow_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(117): signal "yellow_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(118): signal "yellow_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(118): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(118): signal "yellow_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(130): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(191): signal "red_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(191): signal "red_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(196): signal "green_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(196): signal "green_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(201): signal "blue_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(201): signal "blue_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(206): signal "yellow_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(206): signal "yellow_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(81): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(89): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(89): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(90): signal "red_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(90): signal "red_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(90): signal "red_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(91): signal "red_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(91): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(91): signal "red_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(97): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(97): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(98): signal "green_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(98): signal "green_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(98): signal "green_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(99): signal "green_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(99): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(99): signal "green_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(105): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(105): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(106): signal "blue_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(106): signal "blue_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(106): signal "blue_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(107): signal "blue_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(107): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(107): signal "blue_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(113): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(113): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(114): signal "yellow_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(114): signal "yellow_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(114): signal "yellow_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(115): signal "yellow_lock" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(115): signal "KEY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(115): signal "yellow_click" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(125): signal "SW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(153): signal "red_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(153): signal "red_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(155): signal "green_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(155): signal "green_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(157): signal "blue_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(157): signal "blue_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(159): signal "yellow_en" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at graphic_generator.vhd(159): signal "yellow_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10631): VHDL Process Statement warning at graphic_generator.vhd(73): inferring latch(es) for signal or variable "score_temp", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at graphic_generator.vhd(73): inferring latch(es) for signal or variable "static_r", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at graphic_generator.vhd(73): inferring latch(es) for signal or variable "static_g", which holds its previous value in one or more paths through the process
@@ -1218,96 +1230,100 @@ Info (10041): Inferred latch for "yellow_click" at graphic_generator.vhd(73)
 Info (10041): Inferred latch for "blue_click" at graphic_generator.vhd(73)
 Info (10041): Inferred latch for "green_click" at graphic_generator.vhd(73)
 Info (10041): Inferred latch for "red_click" at graphic_generator.vhd(73)
-Info (10041): Inferred latch for "moving_b[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_b[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_g[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "moving_r[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_b[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_g[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "static_r[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[0]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[1]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[2]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[3]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[4]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[5]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[6]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[7]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[8]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[9]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[10]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[11]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[12]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[13]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[14]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[15]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[16]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[17]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[18]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[19]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[20]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[21]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[22]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[23]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[24]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[25]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[26]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[27]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[28]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[29]" at graphic_generator.vhd(84)
-Info (10041): Inferred latch for "score_temp[30]" at graphic_generator.vhd(84)
+Info (10041): Inferred latch for "moving_b[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_b[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_g[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "moving_r[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_b[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_g[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "static_r[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[0]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[1]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[2]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[3]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[4]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[5]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[6]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[7]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[8]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[9]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[10]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[11]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[12]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[13]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[14]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[15]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[16]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[17]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[18]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[19]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[20]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[21]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[22]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[23]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[24]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[25]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[26]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[27]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[28]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[29]" at graphic_generator.vhd(81)
+Info (10041): Inferred latch for "score_temp[30]" at graphic_generator.vhd(81)
 Warning (12125): Using design file random_num_gen.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info (12022): Found design unit 1: random_num_gen-structural
     Info (12023): Found entity 1: random_num_gen
 Info (12128): Elaborating entity "random_num_gen" for hierarchy "graphic_generator:image_gen|random_num_gen:rand_u1"
 Warning (10492): VHDL Process Statement warning at random_num_gen.vhd(19): signal "seed" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at random_num_gen.vhd(20): signal "clrn" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (12125): Using design file clock_gen.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: clock_gen-behavior
+    Info (12023): Found entity 1: clock_gen
+Info (12128): Elaborating entity "clock_gen" for hierarchy "clock_gen:clk_gen"
 Warning (12125): Using design file bcd_7seg.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info (12022): Found design unit 1: bcd_7seg-conditional
     Info (12023): Found entity 1: bcd_7seg
 Info (12128): Elaborating entity "bcd_7seg" for hierarchy "bcd_7seg:BCD_U3"
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
     Info (13026): Duplicate LATCH primitive "graphic_generator:image_gen|moving_b[2]" merged with LATCH primitive "graphic_generator:image_gen|moving_r[0]"
     Info (13026): Duplicate LATCH primitive "graphic_generator:image_gen|moving_b[5]" merged with LATCH primitive "graphic_generator:image_gen|moving_r[0]"
@@ -1355,10 +1371,10 @@ Info (21057): Implemented 1236 device resources after synthesis - the final reso
     Info (21059): Implemented 83 output pins
     Info (21061): Implemented 1129 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 78 warnings
-    Info: Peak virtual memory: 4676 megabytes
-    Info: Processing ended: Tue Dec 04 17:07:30 2018
-    Info: Elapsed time: 00:00:03
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 79 warnings
+    Info: Peak virtual memory: 4680 megabytes
+    Info: Processing ended: Tue Dec 04 20:27:57 2018
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 
 

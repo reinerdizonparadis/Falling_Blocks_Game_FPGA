@@ -69,18 +69,15 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
-	-- Image Generation Circuit
+	-- Image Generation Process
 	PROCESS(disp_ena, row, column, moving_clk)
-		
 		-- VARIABLES
 		VARIABLE static_r, static_g, static_b :	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
 		VARIABLE moving_r, moving_g, moving_b :	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '1');
 		VARIABLE score_temp : NATURAL := 0;
 		VARIABLE stat_mov_spd : NATURAL := STAT_MOV_SPD_MIN;
 		VARIABLE speed_lock : BOOLEAN := FALSE;
-		
 	BEGIN
-		
 		IF SW(17) = '1' THEN		-- reset state
 			score_temp := 0;
 			stat_mov_spd := STAT_MOV_SPD_MIN;
@@ -121,14 +118,11 @@ BEGIN
 											static_r, static_g, static_b,
 											yellow_click, score_temp);
 			ELSE																																			-- background
-				static_r := (OTHERS => '1');
-				static_g	:= (OTHERS => '1');
-				static_b := (OTHERS => '1');
+				ASSIGN_COLOR((OTHERS => '1'), (OTHERS => '1'), (OTHERS => '1'), static_r, static_g, static_b);
 			END IF;
 			
 			----------- MOVING PIXEL GENERATION
 			IF(moving_clk'event AND moving_clk = '1' AND SW(0) = '0') THEN
-				
 				-- Increase block speed when user score more points
 				IF NOT speed_lock AND score_temp > 15 AND score_temp rem 16 < 8  THEN
 					stat_mov_spd := stat_mov_spd + 1;
@@ -157,41 +151,21 @@ BEGIN
 			
 			----------- MOVING BLOCKS DRAWING
 			IF		red_en AND row >= red_y AND row < red_y+STAT_MOV_SIZE AND column >= 135 AND column < 135+STAT_BLK_SIZE THEN
-				moving_r := "11100100";
-				moving_g	:= "00110111";
-				moving_b := "00010010";
-				
+				ASSIGN_COLOR("11100100", "00110111", "00010010", moving_r, moving_g, moving_b);
 			ELSIF	green_en AND row >= green_y AND row < green_y+STAT_MOV_SIZE AND column >= 405 AND column < 405+STAT_BLK_SIZE THEN
-				moving_r := "00010011";
-				moving_g	:= "10100101";
-				moving_b := "00101110";
-				
+				ASSIGN_COLOR("00010011", "10100101", "00101110", moving_r, moving_g, moving_b);
 			ELSIF	blue_en AND row >= blue_y AND row < blue_y+STAT_MOV_SIZE AND column >= 675 AND column < 675+STAT_BLK_SIZE THEN
-				moving_r := "00101011";
-				moving_g	:= "00010010";
-				moving_b := "10100101";
-				
+				ASSIGN_COLOR("00101011", "00010010", "10100101", moving_r, moving_g, moving_b);
 			ELSIF	yellow_en AND row >= yellow_y AND row < yellow_y+STAT_MOV_SIZE AND column >= 945 AND column < 945+STAT_BLK_SIZE THEN
-				moving_r := "10101011";
-				moving_g	:= "10010010";
-				moving_b := "00100101";
-				
+				ASSIGN_COLOR("10101011", "10010010", "00100101", moving_r, moving_g, moving_b);
 			ELSE
-				moving_r := (OTHERS => '1');
-				moving_g := (OTHERS => '1');
-				moving_b := (OTHERS => '1');
+				ASSIGN_COLOR((OTHERS => '1'), (OTHERS => '1'), (OTHERS => '1'), moving_r, moving_g, moving_b);
 			END IF;
 			
 		ELSE								--blanking time
-			static_r := (OTHERS => '0');
-			static_g := (OTHERS => '0');
-			static_b := (OTHERS => '0');
-			
-			moving_r := (OTHERS => '0');
-			moving_g := (OTHERS => '0');
-			moving_b := (OTHERS => '0');
+			ASSIGN_COLOR((OTHERS => '0'), (OTHERS => '0'), (OTHERS => '0'), static_r, static_g, static_b);
+			ASSIGN_COLOR((OTHERS => '0'), (OTHERS => '0'), (OTHERS => '0'), moving_r, moving_g, moving_b);
 		END IF;
-		
 		
 		-- display to the screen
 		red <= static_r AND moving_r;
@@ -200,6 +174,5 @@ BEGIN
 		
 		-- display score
 		score <= score_temp;
-		
 	END PROCESS;
 END behavior;

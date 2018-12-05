@@ -4,14 +4,11 @@ USE IEEE.NUMERIC_STD.ALL;
 
 PACKAGE graphics_lib IS
 	CONSTANT DEBOUNCING_CNT	: NATURAL := 125000;
-	
 	CONSTANT STAT_BLK_MIN	: NATURAL := 924;
 	CONSTANT STAT_BLK_MAX	: NATURAL := 1024;
 	CONSTANT STAT_BLK_SIZE	: NATURAL := 200;
-	
 	CONSTANT STAT_MOV_SIZE		: NATURAL := 50;
 	CONSTANT STAT_MOV_SPD_MIN	: NATURAL := 5;
-	
 	TYPE KEY_STATE IS (INIT, START_TIMER, RUN, END_TIMER);
 	
 	PROCEDURE CREATE_STATIC_BLOCKS(
@@ -20,21 +17,22 @@ PACKAGE graphics_lib IS
 		CONSTANT upR, upG, upB, dwR, dwG, dwB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		VARIABLE R, G, B : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 		SIGNAL click_lock : OUT BOOLEAN;
-		VARIABLE score : INOUT NATURAL
-	);
+		VARIABLE score : INOUT NATURAL);
 	
 	PROCEDURE CHECK_BTN(
 		SIGNAL state : INOUT KEY_STATE;
 		SIGNAL click_lock : IN BOOLEAN;
 		SIGNAL deb_cnt : INOUT NATURAL RANGE 0 to DEBOUNCING_CNT-1;
-		SIGNAL counter_lock : OUT STD_LOGIC
-	);
+		SIGNAL counter_lock : OUT STD_LOGIC);
 	
 	PROCEDURE ADJUST_MOVING_BLOCKS(
 		SIGNAL enable : INOUT BOOLEAN;
 		SIGNAL pos : INOUT NATURAL;
-		VARIABLE speed : IN NATURAL
-	);
+		VARIABLE speed : IN NATURAL);
+	
+	PROCEDURE ASSIGN_COLOR(
+		CONSTANT inR, inG, inB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		VARIABLE R, G, B : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 	
 END graphics_lib;
 
@@ -50,18 +48,11 @@ PACKAGE BODY graphics_lib IS
 		VARIABLE score : INOUT NATURAL) IS
 	BEGIN
 		IF KEY = '0' AND SW = '0' THEN
-			R := dwR;
-			G := dwG;
-			B := dwB;
-			
-			IF score_lock_exp THEN
-				click_lock <= TRUE;
-			END IF;
+			ASSIGN_COLOR(dwR, dwG, dwB, R, G, B);
+			IF score_lock_exp THEN click_lock <= TRUE; END IF;
 			
 		ELSE
-			R := upR;
-			G := upG;
-			B := upB;
+			ASSIGN_COLOR(upR, upG, upB, R, G, B);
 			IF score_unlock_exp THEN
 				score := score + 1;
 				click_lock <= FALSE;
@@ -69,7 +60,6 @@ PACKAGE BODY graphics_lib IS
 		END IF;
 	
 	END CREATE_STATIC_BLOCKS;
-	
 	
 	-- Check Button Procedure
 	PROCEDURE CHECK_BTN(
@@ -110,5 +100,15 @@ PACKAGE BODY graphics_lib IS
 			END IF;
 		END IF;
 	END ADJUST_MOVING_BLOCKS;
+	
+	-- Color Assignment Procedure
+	PROCEDURE ASSIGN_COLOR(
+		CONSTANT inR, inG, inB : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		VARIABLE R, G, B : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)) IS
+	BEGIN
+		R := inR;
+		G := inG;
+		B := inB;
+	END ASSIGN_COLOR;
 	
 END graphics_lib;
