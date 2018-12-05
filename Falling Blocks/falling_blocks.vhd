@@ -8,8 +8,8 @@ ENTITY falling_blocks IS
 		CLOCK_50	: IN STD_LOGIC;
 		
 		-- Switch and Key Inputs
-		SW			: IN STD_LOGIC_VECTOR(17 DOWNTO 0);
-		KEY		: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		SW		: IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+		KEY	: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		
 		-- LED Outputs
 		LEDR	: OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
@@ -41,26 +41,24 @@ ARCHITECTURE structural OF falling_blocks IS
 	-- VGA Controller
 	COMPONENT vga_controller IS
 		GENERIC(
-			h_pulse 	:	INTEGER := 144;    	--horiztonal sync pulse width in pixels
-			h_bp	 	:	INTEGER := 248;		--horiztonal back porch width in pixels
-			h_pixels	:	INTEGER := 1280;		--horiztonal display width in pixels
-			h_fp	 	:	INTEGER := 16;			--horiztonal front porch width in pixels
+			h_pixels	:	INTEGER := 1280;		--horizontal display width in pixels
+			h_fp	 	:	INTEGER := 16;			--horizontal front porch width in pixels
+			h_pulse 	:	INTEGER := 144;    	--horizontal sync pulse width in pixels
+			h_bp	 	:	INTEGER := 248;		--horizontal back porch width in pixels
 			h_pol		:	STD_LOGIC := '1';		--horizontal sync pulse polarity (1 = positive, 0 = negative)
-			v_pulse 	:	INTEGER := 3;			--vertical sync pulse width in rows
-			v_bp	 	:	INTEGER := 38;			--vertical back porch width in rows
 			v_pixels	:	INTEGER := 1024;		--vertical display width in rows
 			v_fp	 	:	INTEGER := 1;			--vertical front porch width in rows
+			v_pulse 	:	INTEGER := 3;			--vertical sync pulse width in rows
+			v_bp	 	:	INTEGER := 38;			--vertical back porch width in rows
 			v_pol		:	STD_LOGIC := '1');	--vertical sync pulse polarity (1 = positive, 0 = negative)
 		PORT(
-			pixel_clk	:	IN		STD_LOGIC;	--pixel clock at frequency of VGA mode being used
-			reset_n		:	IN		STD_LOGIC;	--active low asycnchronous reset
-			h_sync		:	OUT	STD_LOGIC;	--horiztonal sync pulse
-			v_sync		:	OUT	STD_LOGIC;	--vertical sync pulse
-			disp_ena		:	OUT	STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
-			column		:	OUT	INTEGER;		--horizontal pixel coordinate
-			row			:	OUT	INTEGER;		--vertical pixel coordinate
-			n_blank		:	OUT	STD_LOGIC;	--direct blacking output to DAC
-			n_sync		:	OUT	STD_LOGIC); --sync-on-green output to DAC
+			pixel_clk			:	IN		STD_LOGIC;	--pixel clock at frequency of VGA mode being used
+			reset_n				:	IN		STD_LOGIC;	--active low asycnchronous reset
+			h_sync, v_sync		:	OUT	STD_LOGIC;	--horizontal, vertical sync pulse
+			disp_ena				:	OUT	STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
+			row, column			:	OUT	INTEGER;		--horizontal, vertical pixel coordinate
+			n_blank				:	OUT	STD_LOGIC;	--direct blacking output to DAC
+			n_sync				:	OUT	STD_LOGIC); --sync-on-green output to DAC
 	END COMPONENT vga_controller;
 	
 	-- Image Generation Component
@@ -84,21 +82,18 @@ ARCHITECTURE structural OF falling_blocks IS
 	
 	-- BCD to 7 segment Decoder Component
 	COMPONENT bcd_7seg IS
-		PORT(
-			bi_bar : IN STD_LOGIC; -- blanking input
-			lt_bar : IN STD_LOGIC; -- lamp test input
-			dcba : IN STD_LOGIC_VECTOR (3 DOWNTO 0); --BCD input
-			seg: OUT STD_LOGIC_VECTOR(6 DOWNTO 0) -- segments in order from a to g
-			);
+		PORT (
+		dcba : IN STD_LOGIC_VECTOR (3 DOWNTO 0);	-- BCD INPUT
+		seg : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));	-- SEGMENTS IN ORDER FROM A TO G
 	END COMPONENT bcd_7seg;
 	
 	-- Clock Generator Circuits
 	COMPONENT clock_gen IS
 		PORT(
-			CLOCK_50		: IN STD_LOGIC;
-			reset			: IN STD_LOGIC;
+			CLOCK_50			: IN STD_LOGIC;
+			reset				: IN STD_LOGIC;
 			moving_clk		: INOUT STD_LOGIC := '0';
-			rand_clk		: INOUT STD_LOGIC := '0';
+			rand_clk			: INOUT STD_LOGIC := '0';
 			debounce_clk	: INOUT STD_LOGIC := '0'
 		);
 	END COMPONENT clock_gen;
@@ -126,8 +121,8 @@ BEGIN
 		h_sync => VGA_HS,
 		v_sync => VGA_VS,
 		disp_ena => disp_ena,
-		column => vga_col,
 		row => vga_row,
+		column => vga_col,
 		n_blank => VGA_BLANK,
 		n_sync => VGA_SYNC);
 	
@@ -169,8 +164,8 @@ BEGIN
 	
 	-- Display Score to 7 segment displays
 	score_out <= std_logic_vector(to_unsigned(score, score_out'length));
-	BCD_U3 : bcd_7seg port map(bi_bar => '1', lt_bar => '1', dcba => score_out(15 downto 12), seg => HEX3);
-	BCD_U2 : bcd_7seg port map(bi_bar => '1', lt_bar => '1', dcba => score_out(11 downto  8), seg => HEX2);
-	BCD_U1 : bcd_7seg port map(bi_bar => '1', lt_bar => '1', dcba => score_out(7  downto  4), seg => HEX1);
-	BCD_U0 : bcd_7seg port map(bi_bar => '1', lt_bar => '1', dcba => score_out(3  downto  0), seg => HEX0);
+	BCD_U3 : bcd_7seg port map(dcba => score_out(15 downto 12), seg => HEX3);
+	BCD_U2 : bcd_7seg port map(dcba => score_out(11 downto  8), seg => HEX2);
+	BCD_U1 : bcd_7seg port map(dcba => score_out(7  downto  4), seg => HEX1);
+	BCD_U0 : bcd_7seg port map(dcba => score_out(3  downto  0), seg => HEX0);
 END structural;

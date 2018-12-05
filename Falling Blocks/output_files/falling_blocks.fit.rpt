@@ -1,5 +1,5 @@
 Fitter report for falling_blocks
-Tue Dec 04 20:28:13 2018
+Tue Dec 04 20:59:56 2018
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -67,7 +67,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Tue Dec 04 20:28:13 2018      ;
+; Fitter Status                      ; Successful - Tue Dec 04 20:59:56 2018      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; falling_blocks                             ;
 ; Top-level Entity Name              ; falling_blocks                             ;
@@ -3620,7 +3620,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "VGA_G[9]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_R[8]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_R[9]" is assigned to location or region, but does not exist in design
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
@@ -3632,7 +3632,7 @@ Info (170195): Router estimated average interconnect usage is 1% of the availabl
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:06
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 3.28 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 3.22 seconds.
 Info (306004): Started post-fitting delay annotation
 Warning (306006): Found 83 output pins without output pin load capacitance assignment
     Info (306007): Pin "LEDR[0]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
@@ -3727,9 +3727,9 @@ Warning (169174): The Reserve All Unused Pins setting has not been specified, an
 Info (144001): Generated suppressed messages file C:/Users/Reiner/Documents/___GitHub/_CpE 302 Final/Falling Blocks/output_files/falling_blocks.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 328 warnings
     Info: Peak virtual memory: 4910 megabytes
-    Info: Processing ended: Tue Dec 04 20:28:14 2018
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Processing ended: Tue Dec 04 20:59:56 2018
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:15
 
 
 +----------------------------+

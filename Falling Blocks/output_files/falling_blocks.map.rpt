@@ -1,5 +1,5 @@
 Analysis & Synthesis report for falling_blocks
-Tue Dec 04 20:27:57 2018
+Tue Dec 04 20:59:40 2018
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -30,16 +30,12 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
  22. Parameter Settings for User Entity Instance: vga_controller:vga_ctrl
  23. Parameter Settings for User Entity Instance: graphic_generator:image_gen|random_num_gen:rand_u1
  24. altpll Parameter Settings by Entity Instance
- 25. Port Connectivity Checks: "bcd_7seg:BCD_U0"
- 26. Port Connectivity Checks: "bcd_7seg:BCD_U1"
- 27. Port Connectivity Checks: "bcd_7seg:BCD_U2"
- 28. Port Connectivity Checks: "bcd_7seg:BCD_U3"
- 29. Port Connectivity Checks: "clock_gen:clk_gen"
- 30. Port Connectivity Checks: "graphic_generator:image_gen|random_num_gen:rand_u1"
- 31. Port Connectivity Checks: "graphic_generator:image_gen"
- 32. Port Connectivity Checks: "vga_pll:pll_clk|vga_pll_altpll_0:altpll_0"
- 33. Elapsed Time Per Partition
- 34. Analysis & Synthesis Messages
+ 25. Port Connectivity Checks: "clock_gen:clk_gen"
+ 26. Port Connectivity Checks: "graphic_generator:image_gen|random_num_gen:rand_u1"
+ 27. Port Connectivity Checks: "graphic_generator:image_gen"
+ 28. Port Connectivity Checks: "vga_pll:pll_clk|vga_pll_altpll_0:altpll_0"
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -65,7 +61,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Dec 04 20:27:57 2018      ;
+; Analysis & Synthesis Status        ; Successful - Tue Dec 04 20:59:40 2018      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; falling_blocks                             ;
 ; Top-level Entity Name              ; falling_blocks                             ;
@@ -981,15 +977,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+---------------------------------------------+
 ; Parameter Name ; Value ; Type                                        ;
 +----------------+-------+---------------------------------------------+
-; h_pulse        ; 144   ; Signed Integer                              ;
-; h_bp           ; 248   ; Signed Integer                              ;
 ; h_pixels       ; 1280  ; Signed Integer                              ;
 ; h_fp           ; 16    ; Signed Integer                              ;
+; h_pulse        ; 144   ; Signed Integer                              ;
+; h_bp           ; 248   ; Signed Integer                              ;
 ; h_pol          ; '1'   ; Enumerated                                  ;
-; v_pulse        ; 3     ; Signed Integer                              ;
-; v_bp           ; 38    ; Signed Integer                              ;
 ; v_pixels       ; 1024  ; Signed Integer                              ;
 ; v_fp           ; 1     ; Signed Integer                              ;
+; v_pulse        ; 3     ; Signed Integer                              ;
+; v_bp           ; 38    ; Signed Integer                              ;
 ; v_pol          ; '1'   ; Enumerated                                  ;
 +----------------+-------+---------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -1020,46 +1016,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- VCO_MULTIPLY_BY        ; 0                                                    ;
 ;     -- VCO_DIVIDE_BY          ; 0                                                    ;
 +-------------------------------+------------------------------------------------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "bcd_7seg:BCD_U0" ;
-+--------+-------+----------+-----------------+
-; Port   ; Type  ; Severity ; Details         ;
-+--------+-------+----------+-----------------+
-; bi_bar ; Input ; Info     ; Stuck at VCC    ;
-; lt_bar ; Input ; Info     ; Stuck at VCC    ;
-+--------+-------+----------+-----------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "bcd_7seg:BCD_U1" ;
-+--------+-------+----------+-----------------+
-; Port   ; Type  ; Severity ; Details         ;
-+--------+-------+----------+-----------------+
-; bi_bar ; Input ; Info     ; Stuck at VCC    ;
-; lt_bar ; Input ; Info     ; Stuck at VCC    ;
-+--------+-------+----------+-----------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "bcd_7seg:BCD_U2" ;
-+--------+-------+----------+-----------------+
-; Port   ; Type  ; Severity ; Details         ;
-+--------+-------+----------+-----------------+
-; bi_bar ; Input ; Info     ; Stuck at VCC    ;
-; lt_bar ; Input ; Info     ; Stuck at VCC    ;
-+--------+-------+----------+-----------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "bcd_7seg:BCD_U3" ;
-+--------+-------+----------+-----------------+
-; Port   ; Type  ; Severity ; Details         ;
-+--------+-------+----------+-----------------+
-; bi_bar ; Input ; Info     ; Stuck at VCC    ;
-; lt_bar ; Input ; Info     ; Stuck at VCC    ;
-+--------+-------+----------+-----------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------+
@@ -1117,7 +1073,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Dec 04 20:27:53 2018
+    Info: Processing started: Tue Dec 04 20:59:36 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off falling_blocks -c falling_blocks
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 0 entities, in source file graphics_lib.vhd
@@ -1320,7 +1276,7 @@ Warning (12125): Using design file clock_gen.vhd, which is not specified as a de
     Info (12023): Found entity 1: clock_gen
 Info (12128): Elaborating entity "clock_gen" for hierarchy "clock_gen:clk_gen"
 Warning (12125): Using design file bcd_7seg.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
-    Info (12022): Found design unit 1: bcd_7seg-conditional
+    Info (12022): Found design unit 1: bcd_7seg-dataflow
     Info (12023): Found entity 1: bcd_7seg
 Info (12128): Elaborating entity "bcd_7seg" for hierarchy "bcd_7seg:BCD_U3"
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
@@ -1372,8 +1328,8 @@ Info (21057): Implemented 1236 device resources after synthesis - the final reso
     Info (21061): Implemented 1129 logic cells
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 79 warnings
-    Info: Peak virtual memory: 4680 megabytes
-    Info: Processing ended: Tue Dec 04 20:27:57 2018
+    Info: Peak virtual memory: 4684 megabytes
+    Info: Processing ended: Tue Dec 04 20:59:40 2018
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 
