@@ -6,7 +6,7 @@ ENTITY clock_gen IS
 		CLOCK_50			: IN STD_LOGIC;
 		reset				: IN STD_LOGIC;
 		moving_clk		: INOUT STD_LOGIC := '0';
-		rand_clk			: INOUT STD_LOGIC := '0'
+		rand_clk			: INOUT STD_LOGIC := '0';
 	);
 END clock_gen;
 	
@@ -21,6 +21,7 @@ BEGIN
 			rand_cnt <= 0;
 		ELSIF(CLOCK_50'event AND CLOCK_50 = '1') THEN
 			clk_counter <= clk_counter + 1;
+			debounce_cnt <= debounce_cnt + 1;
 			rand_cnt <= rand_cnt + 1;
 			
 			IF(clk_counter + 1 = 249999) THEN

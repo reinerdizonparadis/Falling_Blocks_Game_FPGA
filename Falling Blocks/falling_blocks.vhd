@@ -80,12 +80,12 @@ ARCHITECTURE structural OF falling_blocks IS
 		
 	END COMPONENT graphic_generator;
 	
-	-- BCD to 7 segment Decoder Component
-	COMPONENT bcd_7seg IS
+	-- HEX to 7 segment Decoder Component
+	COMPONENT hex_7seg IS
 		PORT (
 		dcba : IN STD_LOGIC_VECTOR (3 DOWNTO 0);	-- BCD INPUT
 		seg : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));	-- SEGMENTS IN ORDER FROM A TO G
-	END COMPONENT bcd_7seg;
+	END COMPONENT hex_7seg;
 	
 	-- Clock Generator Circuits
 	COMPONENT clock_gen IS
@@ -93,15 +93,14 @@ ARCHITECTURE structural OF falling_blocks IS
 			CLOCK_50			: IN STD_LOGIC;
 			reset				: IN STD_LOGIC;
 			moving_clk		: INOUT STD_LOGIC := '0';
-			rand_clk			: INOUT STD_LOGIC := '0';
-			debounce_clk	: INOUT STD_LOGIC := '0'
+			rand_clk			: INOUT STD_LOGIC := '0'
 		);
 	END COMPONENT clock_gen;
 	
 	-- Signals
 	SIGNAL px_clk, disp_ena : STD_LOGIC;
 	SIGNAL vga_col, vga_row : INTEGER;
-	SIGNAL moving_clk, rand_clk, debounce_clk : STD_LOGIC := '0';
+	SIGNAL moving_clk, rand_clk : STD_LOGIC := '0';
 	SIGNAL score_out : STD_LOGIC_VECTOR(15 DOWNTO 0) := (OTHERS => '0');
 	SIGNAL score : NATURAL := 0;
 	
@@ -159,13 +158,12 @@ BEGIN
 		CLOCK_50 => CLOCK_50,
 		reset => SW(17),
 		moving_clk => moving_clk,
-		rand_clk => rand_clk,
-		debounce_clk => debounce_clk);
+		rand_clk => rand_clk);
 	
 	-- Display Score to 7 segment displays
 	score_out <= std_logic_vector(to_unsigned(score, score_out'length));
-	BCD_U3 : bcd_7seg port map(dcba => score_out(15 downto 12), seg => HEX3);
-	BCD_U2 : bcd_7seg port map(dcba => score_out(11 downto  8), seg => HEX2);
-	BCD_U1 : bcd_7seg port map(dcba => score_out(7  downto  4), seg => HEX1);
-	BCD_U0 : bcd_7seg port map(dcba => score_out(3  downto  0), seg => HEX0);
+	BCD_U3 : hex_7seg port map(dcba => score_out(15 downto 12), seg => HEX3);
+	BCD_U2 : hex_7seg port map(dcba => score_out(11 downto  8), seg => HEX2);
+	BCD_U1 : hex_7seg port map(dcba => score_out(7  downto  4), seg => HEX1);
+	BCD_U0 : hex_7seg port map(dcba => score_out(3  downto  0), seg => HEX0);
 END structural;

@@ -24,8 +24,7 @@ ENTITY graphic_generator IS
 		blue		:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --blue magnitude output to DAC
 		
 		-- Other Outputs
-		score		:	OUT	NATURAL := 0
-		);
+		score		:	OUT	NATURAL := 0);
 END graphic_generator;
 
 ARCHITECTURE behavior OF graphic_generator IS
